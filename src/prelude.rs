@@ -6,12 +6,13 @@
 /// the values.
 /// # Examples
 /// ```
-/// let one_two_three: Vec<usize> = collect_as_vector(&[0, 0, 1, 2, 3, 0, 0], (2, 4));
+/// use citadel::prelude;
+/// let one_two_three: Vec<usize> = prelude::collect_as_vector(&[0, 0, 1, 2, 3, 0, 0], (2 as usize, 4 as usize));
 /// ```
 pub fn collect_as_vector<T: Clone>(list: &[T], (bound1, bound2): (usize, usize)) -> Vec<T> {
     let mut collector: Vec<T> = vec![];
 
-    for index in bound1 .. bound2 {
+    for index in bound1 .. bound2 + 1 {
         collector.push(list[index].clone());
     }
 
@@ -21,7 +22,8 @@ pub fn collect_as_vector<T: Clone>(list: &[T], (bound1, bound2): (usize, usize))
 /// Filters a list, ceasing to collect once a predicate returns FALSE.
 /// # Examples
 /// ```
-/// let one_two_three = filter_break(&[1, 2, 3, 4], |x: &usize| -> bool {x != 4});
+/// use citadel::prelude;
+/// let one_two_three = prelude::filter_break(&[1, 2, 3, 4], |x: &usize| -> bool {*x != 4});
 /// ```
 pub fn filter_break<T: Clone, F>(list: &[T], pred: F) -> Vec<T> 
     where F: Fn(&T) -> bool {
@@ -40,13 +42,14 @@ pub fn filter_break<T: Clone, F>(list: &[T], pred: F) -> Vec<T>
 /// predicate yields FALSE.
 /// # Examples
 /// ```
-/// let one_two_three = drop_break(&[4, 5, 6, 1, 2, 3], |x: &usize| -> bool {x != 6});
+/// use citadel::prelude;
+/// let one_two_three = prelude::drop_break(&[4, 5, 6, 1, 2, 3], |x: &usize| -> bool {*x != 6});
 /// ```
 pub fn drop_break<T: Clone, F>(list: &[T], pred: F) -> Vec<T> // Clumsy function
     where F: Fn(&T) -> bool {
         for item in 0 .. list.len() {
             if ! pred(&list[item]) {
-                return collect_as_vector(list, (item, list.len()));
+                return collect_as_vector(list, (item + 1, list.len() - 1));
             }
         }
         vec![]

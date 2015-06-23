@@ -7,6 +7,7 @@ use prelude;
 /// # Examples
 /// ```
 /// let spots_of_a = positions(&['a', 'a', 'b', 'a'], 'a')
+///```
 pub fn positions<T: Eq>(list: &[T], item: T) -> Vec<i32> {
     let mut collector: Vec<i32> = vec![];
 
@@ -23,17 +24,19 @@ pub fn positions<T: Eq>(list: &[T], item: T) -> Vec<i32> {
 /// # Examples
 ///
 /// ```
-/// let one_two_three = before(&[1, 2, 3, 4, 5], 4);
+/// use citadel::access::stat;
+/// let one_two_three = stat::before(&[1, 2, 3, 4, 5], 4);
 /// ```
 pub fn before<T: Eq+Clone>(list: &[T], item: T) -> Vec<T> {
-    prelude::filter_break(list, |c: &T| -> bool {*c == item})
+    prelude::filter_break(list, |c: &T| -> bool {*c != item})
 }
 
 /// Return everything after the match of an item.
 /// Examples
 /// ```
-/// let one_two_three = after(&[4, 5, 1, 2, 3], 5)
+/// use citadel::access::stat;
+/// let one_two_three = stat::after(&[4, 5, 1, 2, 3], 5)
 ///```
 pub fn after<T: Eq+Clone>(list: &[T], item: T) -> Vec<T> {
-    prelude::drop_break(list, |c: &T| -> bool {*c == item})
+    prelude::drop_break(list, |c: &T| -> bool {*c != item})
 }
