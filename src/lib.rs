@@ -1,5 +1,10 @@
+//! Citadel is a network of tiered, interdependant libraries.
+#[macro_use]
 pub mod access;
+pub mod modify;
 pub mod prelude;
+
+
 
 #[cfg(test)]
 pub mod tests {

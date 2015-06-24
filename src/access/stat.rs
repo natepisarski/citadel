@@ -32,11 +32,21 @@ pub fn before<T: Eq+Clone>(list: &[T], item: T) -> Vec<T> {
 }
 
 /// Return everything after the match of an item.
-/// Examples
+/// # Examples
 /// ```
 /// use citadel::access::stat;
 /// let one_two_three = stat::after(&[4, 5, 1, 2, 3], 5)
 ///```
 pub fn after<T: Eq+Clone>(list: &[T], item: T) -> Vec<T> {
     prelude::drop_break(list, |c: &T| -> bool {*c != item})
+}
+
+/// Returns everything between two delimeters.
+/// # Examples
+/// ```
+/// use citadel::access::stat;
+/// let one_two_three = stat::between(&[1, 2, 3, 1], vec![2, 3]);
+///```
+pub fn between<T: Eq+Clone>(list: &[T], (d1, d2): (T, T)) -> Vec<T> {
+    before(&after(list, d1), d2)
 }

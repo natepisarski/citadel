@@ -4,10 +4,12 @@ Citadel is a tiered general-purpose library for Rust. It provides abstractions t
 I hope that you find these libraries as useful as I do.
 
 # Installing
-Simple.  
+Simple.
+````
     [dependencies.citadel]
     git = "https://www.github.com/natepisarski/citadel"
-	
+````
+
 ## Layout
 Citadel has a pyramidal structure. The top-level libraries (currently just Prelude) are available to the entire framework. Each "Wing" of citadel (currently just access and modify) will only have access to the tier equal to or above it. Sub-tiers within these wings follow the same rules.
 
@@ -23,7 +25,7 @@ Functions relating to the retrieval of information of slices / lists of informat
 
 ### Modify Wing
 Functions relating to the manipulation of lists and coercions of lists into other data types.
-
+* coerce - Coercions of lists into other types of data.
 
 ## License 
 Copyright (c) 2015, Nathaniel Pisarski

@@ -4,6 +4,7 @@
 //! modified, it belongs in the modify wing, not access.
 
 pub mod stat;
+pub mod encompassing;
 
 #[cfg(test)]
 mod tests {
@@ -20,5 +21,17 @@ mod tests {
         
         /* positions */
         assert_eq!(stat::positions(&[1, 2, 1, 2], 1), vec![0 as i32, 2 as i32]);
+
+        /* between */
+        assert_eq!(stat::between(&[1, 2, 1, 1, 2, 1], (2, 2)), vec![1, 1]);
+    }
+
+    #[test]
+    fn test_encompassing() {
+        
+        /* encompassed_by */
+        assert_eq!(encompassing::encompassed_by(
+            &['a', '{', 'b', '{', 'c', '}', '}', 'a', '{', 'd', '}', 'e'], ('{', '}')),
+                   vec![vec!['b', '{', 'c', '}'], vec!['d']]);
     }
 }
