@@ -6,8 +6,8 @@ I hope that you find these libraries as useful as I do.
 # Installing
 Simple.
 ````
-    [dependencies.citadel]
-    git = "https://www.github.com/natepisarski/citadel"
+    [dependencies]
+    citadel = {git = "https://www.github.com/natepisarski/citadel"}
 ````
 
 ## Layout

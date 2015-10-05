@@ -13,6 +13,7 @@ pub fn encompassed_by<T: Eq+Clone>(list: &[T], (delim1, delim2): (T, T)) -> Vec<
     // Once current_collection's scope ends, it's copied here.
     let mut collected: Vec<Vec<T>> = vec![];
 
+    
     // The current "pass" of the scope is collected here.
     let mut current_collection: Vec<T> = vec![];
 
