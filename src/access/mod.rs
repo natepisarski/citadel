@@ -5,6 +5,7 @@
 
 pub mod stat;
 pub mod encompassing;
+pub mod strings;
 
 #[cfg(test)]
 mod tests {

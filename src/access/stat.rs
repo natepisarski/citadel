@@ -50,3 +50,4 @@ pub fn after<T: Eq+Clone>(list: &[T], item: T) -> Vec<T> {
 pub fn between<T: Eq+Clone>(list: &[T], (d1, d2): (T, T)) -> Vec<T> {
     before(&after(list, d1), d2)
 }
+
