@@ -3,13 +3,20 @@
 //! branches of equal order.
 
 /// Collects a slice (determined by the supplied bounds) as a vector, cloning
-/// the values.
+/// the values. If the second bound exceeds the length of the vector, the collection 
+/// is truncated at the final index.
 /// # Examples
 /// ```
 /// use citadel::prelude;
 /// let one_two_three: Vec<usize> = prelude::collect_as_vector(&[0, 0, 1, 2, 3, 0, 0], (2 as usize, 4 as usize));
 /// ```
 pub fn collect_as_vector<T: Clone>(list: &[T], (bound1, bound2): (usize, usize)) -> Vec<T> {
+
+    // If the second bound exceeds the length, return from the first to the end of the list.
+    if bound2 > list.len() {
+        return collect_as_vector(list, (bound1, list.len() - 1));
+    }
+
     let mut collector: Vec<T> = vec![];
 
     for index in bound1 .. bound2 + 1 {
